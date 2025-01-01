@@ -1,0 +1,15 @@
+﻿version: "3.9"  # Use a recent version of the docker-compose file format
+
+services:
+  mysql:
+    image: mysql:latest  # Use the latest official MySQL image
+    container_name: my_mysql_container  # Give a meaningful name to the container
+    ports:
+      - "3306:3306"  # Map host port 3306 to container port 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"  # Set the root password for MySQL
+      MYSQL_DATABASE: "hochschule_database"  # Create the database during container startup
+      MYSQL_USER: "username"  # Create a user 
+      MYSQL_PASSWORD: "password"  # Set the user's password
+    volumes:
+      - ./data/mysql:/var/lib/mysql  # Optional: Persist data by mounting a host directory

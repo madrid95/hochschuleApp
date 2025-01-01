@@ -1,0 +1,39 @@
+﻿<Properties StartupConfiguration="{50A1E479-66AA-4FCF-AA23-477D4BF3686D}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ConfigureClass.cs">
+    <Files>
+      <File FileName="Program.cs" Line="5" Column="2" />
+      <File FileName="ConfigureClass.cs" Line="6" Column="24" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="HochschuleApp" expanded="True">
+            <Node name="HochschuleApp" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
+              </Node>
+              <Node name="context" expanded="True" />
+              <Node name="data" expanded="True">
+                <Node name="mysql" expanded="True" />
+              </Node>
+              <Node name="entity" expanded="True" />
+              <Node name="exceptions" expanded="True" />
+              <Node name="extensions" expanded="True" />
+              <Node name="repository" expanded="True" />
+              <Node name="screens" expanded="True" />
+              <Node name="service" expanded="True" />
+              <Node name="ConfigureClass.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.HochschuleApp PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>

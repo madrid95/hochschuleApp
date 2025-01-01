@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{327798F2-4037-4A0A-95FB-176F1227D971}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="HochschuleApp/entity/Course.cs">
+    <Files>
+      <File FileName="HochschuleApp/repository/CourseRepository.cs" Line="50" Column="56" />
+      <File FileName="HochschuleApp/context/HochschuleContext.cs" Line="16" Column="10" />
+      <File FileName="HochschuleApp/entity/Course.cs" Line="8" Column="36" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="HochschuleApp" expanded="True">
+            <Node name="HochschuleApp" expanded="True" selected="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="FrameworkReferences" expanded="True" />
+                <Node name="PackageDependencies" expanded="True" />
+              </Node>
+              <Node name="context" expanded="True" />
+              <Node name="entity" expanded="True" />
+              <Node name="exceptions" expanded="True" />
+              <Node name="Extensions" expanded="True" />
+              <Node name="repository" expanded="True" />
+              <Node name="screens" expanded="True" />
+              <Node name="service" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.HochschuleApp PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>
