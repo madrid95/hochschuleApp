@@ -1,5 +1,4 @@
-﻿using System;
-using HochschuleApp.entity;
+﻿using HochschuleApp.entity;
 
 namespace HochschuleApp.Extensions
 {
@@ -22,9 +21,10 @@ namespace HochschuleApp.Extensions
             }
 
             semester.Name = newEntity.Name;
+            semester.StartDate = newEntity.StartDate;
+            semester.EndDate = newEntity.EndDate;
             semester.Courses.Update(newEntity.Courses);
             semester.Students.Update(newEntity.Students);
         }
     }
 }
-

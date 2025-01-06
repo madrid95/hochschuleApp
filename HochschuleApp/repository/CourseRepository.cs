@@ -18,7 +18,7 @@ namespace HochschuleApp.repository
         /// <summary>
         /// Referenz auf den DbContext, der für den Zugriff auf die Datenbank verwendet wird.
         /// </summary>
-        private HochschuleContext _hochschuleContext;
+        private readonly HochschuleContext _hochschuleContext;
 
         /// <summary>
         /// Konstruktor für die CourseRepository-Klasse.
@@ -31,31 +31,8 @@ namespace HochschuleApp.repository
         /// Löscht ein Kurs-Objekt aus der Datenbank.
         /// </summary>
         /// <param name="entity">Das zu löschende Kurs-Objekt.</param>
-        /// <exception cref="ArgumentNullException">Wird ausgelöst, wenn entity null ist.</exception>
-        /// <exception cref="NotFoundException">Wird ausgelöst, wenn kein Kurs mit der angegebenen ID gefunden wird.</exception>
         public void Delete( Course entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException($"Entity is null.");
-            }
-
-            var foundedIEntity = _hochschuleContext.Courses.Find(entity.Id)
-                ?? throw new NotFoundException($"Entity with ID '{entity.Id}' not found.");
-
-            _hochschuleContext.Courses.Remove(foundedIEntity);
-            _hochschuleContext.SaveChanges();
-        }
-
-        /// <summary>
-        /// Löscht ein Kurs-Objekt aus der Datenbank anhand seiner ID.
-        /// </summary>
-        /// <param name="id">Die ID des zu löschenden Kurses.</param>
-        /// <exception cref="NotFoundException">Wird ausgelöst, wenn kein Kurs mit der angegebenen ID gefunden wird.</exception>
-        public void DeleteByID( int id)
-        {
-            var entity = this.FindByID(id);
-
             _hochschuleContext.Courses.Remove(entity);
             _hochschuleContext.SaveChanges();
         }
@@ -65,10 +42,9 @@ namespace HochschuleApp.repository
         /// </summary>
         /// <param name="id">Die ID des gesuchten Kurses.</param>
         /// <returns>Das gefundene Kurs-Objekt oder null, wenn kein Kurs mit der angegebenen ID gefunden wird.</returns>
-        /// <exception cref="NotFoundException">Wird ausgelöst, wenn kein Kurs mit der angegebenen ID gefunden wird.</exception>
-        public Course FindByID( int id)
+        public Course? FindByID( int id)
         {
-            return _hochschuleContext.Courses.Find(id) ?? throw new NotFoundException($"Entity with ID '{id}' not found.");
+            return _hochschuleContext.Courses.Find(id);
         }
 
         /// <summary>
@@ -107,14 +83,11 @@ namespace HochschuleApp.repository
         /// <summary>
         /// Aktualisiert die Eigenschaften eines bestehenden Kurses.
         /// </summary>
-        /// <param name="id">Die ID des zu aktualisierenden Kurses.</param>
+        /// <param name="oldEntity">Das Kurs-Objekt mit den alten Eigenschaften.</param>
         /// <param name="newEntity">Das Kurs-Objekt mit den neuen Eigenschaften.</param>
-        public void Update(int id, Course newEntity)
+        public void Update(Course oldEntity, Course newEntity)
         {
-            var foundEntity = this.FindByID(id);
-
-            foundEntity.UpdateProperties(newEntity);
-
+            oldEntity.UpdateProperties(newEntity);
             _hochschuleContext.SaveChanges();
         }
 

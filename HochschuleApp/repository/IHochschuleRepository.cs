@@ -15,7 +15,7 @@ namespace HochschuleApp.repository
         /// </summary>
         /// <param name="id">Die eindeutige Identifikationsnummer der gesuchten Entität.</param>
         /// <returns>Die gefundene Entität oder null, wenn keine Entität mit der angegebenen ID gefunden wurde.</returns>
-        T FindByID(ID id);
+        T? FindByID(ID id);
 
         /// <summary>
         /// Findet eine Liste von Entitäten anhand einer Liste von IDs.
@@ -39,12 +39,6 @@ namespace HochschuleApp.repository
         void Delete(T entity);
 
         /// <summary>
-        /// Löscht eine Entität aus der Datenbank anhand ihrer eindeutigen Identifikationsnummer.
-        /// </summary>
-        /// <param name="id">Die eindeutige Identifikationsnummer der zu löschenden Entität.</param>
-        void DeleteByID(ID id);
-
-        /// <summary>
         /// Liefert eine Liste aller vorhandenen Entitäten.
         /// </summary>
         /// <returns>Eine Liste aller Entitäten.</returns>
@@ -53,9 +47,9 @@ namespace HochschuleApp.repository
         /// <summary>
         /// Aktualisiert die Eigenschaften einer bestehenden Entität.
         /// </summary>
-        /// <param name="id">Die eindeutige Identifikationsnummer der zu aktualisierenden Entität.</param>
+        /// <param name="oldEntity">Die Entität mit den alten Eigenschaften.</param>
         /// <param name="newEntity">Die Entität mit den neuen Eigenschaften.</param>
-        void Update(ID id, T newEntity);
+        void Update(T oldEntity, T newEntity);
 
         /// <summary>
         /// Speichert alle Änderungen an den Entitäten im DbContext.

@@ -9,8 +9,9 @@ namespace HochschuleApp.exceptions
         /// <summary>
         /// Initialisiert eine neue Instanz der AlreadyExistsException-Klasse mit der angegebenen Fehlermeldung.
         /// </summary>
-        /// <param name="message">Die Fehlermeldung.</param>
-        public AlreadyExistsException(string message) : base(message)
+        /// <param name="name">Klassenname.</param>
+        /// <param name="id">id der Entität.</param>
+        public AlreadyExistsException(string name, int id) : base($"Entity {name} with ID '{id}' alredy exists.")
         {
         }
     }

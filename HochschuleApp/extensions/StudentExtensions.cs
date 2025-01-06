@@ -1,5 +1,4 @@
-﻿using System;
-using HochschuleApp.entity;
+﻿using HochschuleApp.entity;
 
 namespace HochschuleApp.Extensions
 {
@@ -30,4 +29,3 @@ namespace HochschuleApp.Extensions
         }
     }
 }
-

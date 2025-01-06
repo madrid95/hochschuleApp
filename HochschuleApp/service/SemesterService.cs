@@ -31,12 +31,13 @@ namespace HochschuleApp.service
         /// <param name="semesterId">Die ID des Semesters.</param>
         /// <param name="studentId">Die ID des Studenten.</param>
         /// <exception cref="InvalidOperationException">Wird geworfen, wenn der Student bereits im Semester angemeldet ist.</exception>
+        /// <exception cref="NotFoundException">Wird geworfen, wenn kein Semester mit der angegebenen ID gefunden wird.</exception>
         public void AddStudentToSemester(int semesterId, int studentId)
         {
             // 1. Retrieve the Student and Semester entities
-            var semester = _semesterRepository.FindByID(semesterId);
+            var semester = FindByID(semesterId);
 
-            var student = _studentRepository.FindByID(studentId);
+            var student = _studentRepository.FindByID(studentId) ?? throw new NotFoundException(nameof(Student), studentId);
 
             // 2. Check if the student is already enrolled in the course
             if (semester.Students.Contains(student))
@@ -57,12 +58,13 @@ namespace HochschuleApp.service
         /// <param name="semesterId">Die ID des Semesters.</param>
         /// <param name="courseId">Die ID des Kurses.</param>
         /// <exception cref="InvalidOperationException">Wird geworfen, wenn der Kurs bereits im Semester vorhanden ist.</exception>
+        /// <exception cref="NotFoundException">Wird geworfen, wenn kein Semester mit der angegebenen ID gefunden wird.</exception>
         public void AddCourseToSemester(int semesterId, int courseId)
         {
             // 1. Retrieve the Course and Semester entities
-            var semester = _semesterRepository.FindByID(semesterId);
+            var semester = FindByID(semesterId);
 
-            var course = _courseRepository.FindByID(courseId);
+            var course = _courseRepository.FindByID(courseId) ?? throw new NotFoundException(nameof(Course), courseId);
 
             // 2. Check if the course is already assigned in the course
             if (semester.Courses.Contains(course))
@@ -82,9 +84,10 @@ namespace HochschuleApp.service
         /// </summary>
         /// <param name="id">Die ID des gesuchten Semesters.</param>
         /// <returns>Das gefundene Semester-Objekt oder null, wenn kein Semester mit der angegebenen ID gefunden wird.</returns>
+        /// <exception cref="NotFoundException">Wird geworfen, wenn kein Semester mit der angegebenen ID gefunden wird.</exception>
         public Semester FindByID(int id)
         {
-            return _semesterRepository.FindByID(id);
+            return _semesterRepository.FindByID(id) ?? throw new NotFoundException(nameof(Semester), id);
         }
 
         /// <summary>
@@ -111,18 +114,29 @@ namespace HochschuleApp.service
         /// Löscht ein Semester.
         /// </summary>
         /// <param name="entity">Das zu löschende Semester-Objekt.</param>
+        /// <exception cref="ArgumentNullException">Wird ausgelöst, wenn entity null ist.</exception>
+        /// <exception cref="NotFoundException">Wird geworfen, wenn kein Semester mit der angegebenen ID gefunden wird.</exception>
         public void Delete(Semester entity)
         {
-            _semesterRepository.Delete(entity);
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity), "The entity cannot be null.");
+            }
+
+            var foundedIEntity = FindByID(entity.Id);
+            _semesterRepository.Delete(foundedIEntity);
         }
 
         /// <summary>
         /// Löscht ein Semester anhand seiner ID.
         /// </summary>
         /// <param name="id">Die ID des zu löschenden Semesters.</param>
+        /// <exception cref="NotFoundException">Wird geworfen, wenn kein Semester mit der angegebenen ID gefunden wird.</exception>
         public void DeleteByID(int id)
         {
-            _semesterRepository.DeleteByID(id);
+            var entity = FindByID(id);
+
+            _semesterRepository.Delete(entity);
         }
 
         /// <summary>
@@ -141,7 +155,14 @@ namespace HochschuleApp.service
         /// <param name="newEntity">Das Semester-Objekt mit den neuen Eigenschaften.</param>
         public void Update(int id, Semester newEntity)
         {
-            _semesterRepository.Update(id, newEntity);
+            if (newEntity == null)
+            {
+                throw new ArgumentNullException(nameof(newEntity), "The entity cannot be null.");
+            }
+
+            var oldEntity = this.FindByID(id);
+
+            _semesterRepository.Update(oldEntity, newEntity);
         }
 
         /// <summary>

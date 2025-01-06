@@ -1,5 +1,4 @@
 ﻿version: "3.9"  # Use a recent version of the docker-compose file format
-
 services:
   mysql:
     image: mysql:latest  # Use the latest official MySQL image

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5a8739c6-ef96-41c4-b92f-13aa17285670" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.vs/HochschuleApp/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../.vs/HochschuleApp/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vs/HochschuleApp/FileContentIndex/2041156c-7171-46de-8c38-cce5d7529318.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vs/HochschuleApp/FileContentIndex/21e0f4a9-474a-4b00-8417-ab209cd9364e.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vs/HochschuleApp/FileContentIndex/251f66df-827d-4fee-8e51-4b92847e3daa.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vs/HochschuleApp/FileContentIndex/2cd65b71-e614-4ac1-8a6f-e86781474b05.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vs/HochschuleApp/FileContentIndex/c9a4cdb2-d012-4237-9c2b-62335caef6e5.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vs/HochschuleApp/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../.vs/HochschuleApp/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vs/HochschuleApp/v17/DocumentLayout.backup.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vs/HochschuleApp/v17/DocumentLayout.backup.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vs/HochschuleApp/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vs/HochschuleApp/v17/DocumentLayout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/HochschuleApp/xs/UserPrefs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/HochschuleApp/xs/UserPrefs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/HochschuleApp/xs/project-cache/HochschuleApp-Debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/HochschuleApp/xs/project-cache/HochschuleApp-Debug.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConfigureClass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConfigureClass.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HochschuleApp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/HochschuleApp.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/HochschuleApp.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/HochschuleApp.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/HochschuleApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/HochschuleApp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/HochschuleApp.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/HochschuleApp.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/HochschuleApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/HochschuleApp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/HochschuleApp.runtimeconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/HochschuleApp.runtimeconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Relational.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Relational.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Microsoft.Extensions.FileProviders.Abstractions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Microsoft.Extensions.FileProviders.Abstractions.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/System.Diagnostics.DiagnosticSource.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/System.Diagnostics.DiagnosticSource.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/#ib_16384_0.dblwr" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql/data/mysql/#ib_16384_0.dblwr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/#innodb_redo/#ib_redo9" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql/data/mysql/#innodb_redo/#ib_redo9" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/#innodb_temp/temp_1.ibt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/#innodb_temp/temp_10.ibt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/#innodb_temp/temp_2.ibt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/#innodb_temp/temp_3.ibt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/#innodb_temp/temp_4.ibt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/#innodb_temp/temp_5.ibt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/#innodb_temp/temp_6.ibt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/#innodb_temp/temp_7.ibt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/#innodb_temp/temp_8.ibt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/#innodb_temp/temp_9.ibt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/binlog.000002" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql/data/mysql/binlog.000002" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/binlog.index" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql/data/mysql/binlog.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/ib_buffer_pool" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql/data/mysql/ib_buffer_pool" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql/data/mysql/ibdata1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/ibtmp1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/mysql.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql/data/mysql/mysql.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/undo_001" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql/data/mysql/undo_001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/data/mysql/undo_002" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql/data/mysql/undo_002" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/data/mysql/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/Course.cs" beforeDir="false" afterPath="$PROJECT_DIR$/entity/Course.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/IIdentifiable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/entity/IIdentifiable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/Lecturer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/entity/Lecturer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/Semester.cs" beforeDir="false" afterPath="$PROJECT_DIR$/entity/Semester.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/Student.cs" beforeDir="false" afterPath="$PROJECT_DIR$/entity/Student.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exceptions/AlreadyExistsException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/exceptions/AlreadyExistsException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exceptions/NotFoundException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/exceptions/NotFoundException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensions/CourseExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/extensions/CourseExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensions/SemesterExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/extensions/SemesterExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.GlobalUsings.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.GlobalUsings.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.genruntimeconfig.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/HochschuleApp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/ref/HochschuleApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/ref/HochschuleApp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/refint/HochschuleApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/refint/HochschuleApp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/HochschuleApp.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/HochschuleApp.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/HochschuleApp.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/HochschuleApp.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/HochschuleApp.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/obj/HochschuleApp.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/CourseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/repository/CourseRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/IHochschuleRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/repository/IHochschuleRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/LecturerRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/repository/LecturerRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/SemesterRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/repository/SemesterRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/StudentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/repository/StudentRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/CourseScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/screens/CourseScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/IHochschuleScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/screens/IHochschuleScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/InputScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/screens/InputScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/LecturerScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/screens/LecturerScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/SemeterScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/screens/SemeterScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/StudentScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/screens/StudentScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/CourseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/service/CourseService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/LecturerService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/service/LecturerService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/SemesterService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/service/SemesterService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/StudentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/service/StudentService.cs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2rGh76mVXaIpCS5jG5Dl5G8gXGt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/madelv/Documents/uni_due/c#/studienleitung/HochschuleApp/HochschuleApp"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5a8739c6-ef96-41c4-b92f-13aa17285670" name="Changes" comment="" />
+      <created>1736191149862</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1736191149862</updated>
+    </task>
+    <servers />
+  </component>
+</project>

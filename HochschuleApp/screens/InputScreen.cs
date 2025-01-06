@@ -40,14 +40,14 @@ namespace HochschuleApp.screens
         /// <param name="prompt">Die Eingabeaufforderung, die dem Benutzer angezeigt wird (z.B. "Alter eingeben: ").</param>
         /// <param name="defaultValue">Der Standardwert, der zurückgegeben wird, wenn keine gültige Eingabe erfolgt (optional, Standardwert ist 0).</param>
         /// <returns>Die eingegebene ganze Zahl. Wenn keine gültige Eingabe erfolgt oder der Benutzer keine Eingabe macht, wird der Standardwert zurückgegeben.</returns>
-        public static int GetIntInputWithDefaultValue(string prompt, int defaultValue)
+        public static int? GetIntInputWithDefaultValue(string prompt, int? defaultValue)
         {
             Console.Write($"{prompt} ({defaultValue}): ");
             int result;
             while (true)
             {
                 Console.Write($"{prompt}: ");
-                string input = Console.ReadLine();
+                string? input = Console.ReadLine();
 
                 if(string.IsNullOrEmpty(input))
                 {
@@ -86,7 +86,7 @@ namespace HochschuleApp.screens
             while (true)
             {
                 Console.Write($"{prompt}: ");
-                string input = Console.ReadLine();
+                string? input = Console.ReadLine();
 
                 if (int.TryParse(input, out result))
                 {
@@ -96,6 +96,38 @@ namespace HochschuleApp.screens
                 Console.WriteLine("Invalid input. Please enter a valid integer.");
             }
             return result;
+        }
+
+        /// <summary>
+        /// Ermittelt eine ganze Zahl vom Benutzer.
+        /// </summary>
+        /// <remarks>
+        /// Fordert den Benutzer so lange auf, eine ganze Zahl einzugeben,
+        /// bis eine gültige Zahl eingegeben wurde oder der Benutzer eine leere Eingabe tätigt.
+        /// </remarks>
+        /// <param name="prompt">Die anzuzeigende Eingabeaufforderung.</param>
+        /// <returns>
+        /// Die eingegebene ganze Zahl, oder null, wenn keine Zahl eingegeben wurde.
+        /// </returns>
+        public static int? GetIntInputOrNull(string prompt)
+        {
+            while (true)
+            {
+                Console.Write($"{prompt}: ");
+                string? input = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(input))
+                {
+                    return null;
+                }
+
+                if (int.TryParse(input, out int result))
+                {
+                    return result;
+                }
+
+                Console.WriteLine("Invalid input. Please enter a valid integer.");
+            }
         }
 
         /// <summary>
@@ -115,7 +147,7 @@ namespace HochschuleApp.screens
                 {
                     return result;
                 }
-                Console.WriteLine("Invalid input. Please enter an integer.");
+                Console.WriteLine($"Invalid input. Please enter an integer between {min} and {max}.");
             }
         }
 
@@ -140,7 +172,7 @@ namespace HochschuleApp.screens
             {
                 Console.Write(prompt);
 
-                string input = InputScreen.GetStringInput(prompt);
+                string input = GetStringInput(prompt);
 
                 if(string.IsNullOrEmpty(input))
                 {
@@ -151,7 +183,7 @@ namespace HochschuleApp.screens
                 {
                     break;
                 }
-                Console.WriteLine("Invalid input. Please enter an integer.");
+                Console.WriteLine($"Invalid input. Please enter an integer between {min} and {max}.");
             }
             return result;
         }
@@ -166,7 +198,7 @@ namespace HochschuleApp.screens
             DateTime result;
             while (true)
             {
-                string birthdateInput = InputScreen.GetStringInput(prompt);
+                string birthdateInput = GetStringInput(prompt);
 
                 if (string.IsNullOrEmpty(birthdateInput))
                 {
@@ -195,7 +227,7 @@ namespace HochschuleApp.screens
             DateTime result;
             while (true)
             {
-                string birthdateInput = InputScreen.GetStringInputWithDefaultValue(prompt, defaultValue?.ToString(DateFormat));
+                string birthdateInput = GetStringInputWithDefaultValue(GetStringTrimInput(prompt), defaultValue?.ToString(DateFormat));
 
                 if (string.IsNullOrEmpty(birthdateInput))
                 {
@@ -233,7 +265,7 @@ namespace HochschuleApp.screens
 
             List<T> selectedEntities = new();
 
-            string studentIdsInput = InputScreen.GetStringTrimInput($"\n{prompt}");
+            string studentIdsInput = GetStringTrimInput($"\n{prompt}");
             if (string.IsNullOrEmpty(studentIdsInput))
             {
                 return selectedEntities; // Early return if no input
@@ -243,7 +275,7 @@ namespace HochschuleApp.screens
             {
                 if (int.TryParse(idString, out int id))
                 {
-                    T? entity = availableEntities.First(e => e.Id == id);
+                    T? entity = availableEntities.FirstOrDefault(e => e.Id == id);
                     if (entity != null)
                     {
                         selectedEntities.Add(entity);
@@ -254,4 +286,3 @@ namespace HochschuleApp.screens
         }
     }
 }
-

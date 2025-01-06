@@ -1,10 +1,6 @@
-﻿using System;
-using System.Data.Entity;
-using HochschuleApp.context;
+﻿using HochschuleApp.context;
 using HochschuleApp.entity;
-using HochschuleApp.exceptions;
 using HochschuleApp.Extensions;
-using Microsoft.EntityFrameworkCore;
 
 namespace HochschuleApp.repository
 {
@@ -33,12 +29,11 @@ namespace HochschuleApp.repository
         /// Aktualisiert die Eigenschaften eines bestehenden Studenten.
         /// </summary>
         /// <param name="id">Die eindeutige Identifikationsnummer des zu aktualisierenden Studenten.</param>
+        /// <param name="oldEntity">Das Student-Objekt mit den alten Eigenschaften.</param>
         /// <param name="newEntity">Das Student-Objekt mit den neuen Eigenschaften.</param>
-        /// <exception cref="NotFoundException">Wird geworfen, wenn kein Student mit der angegebenen ID gefunden wird.</exception>
-        public void Update(int id, Student newEntity)
+        public void Update(Student oldEntity, Student newEntity)
         {
-            var foundEntity = this.FindByID(id);
-            foundEntity.UpdateProperties(newEntity);
+            oldEntity.UpdateProperties(newEntity);
             _hochschuleContext.SaveChanges();
         }
 
@@ -69,10 +64,9 @@ namespace HochschuleApp.repository
         /// </summary>
         /// <param name="id">Die ID des gesuchten Studenten.</param>
         /// <returns>Das gefundene Studenten-Objekt oder null, wenn kein Student mit der angegebenen ID gefunden wird.</returns>
-        /// <exception cref="NotFoundException">Wird geworfen, wenn kein Student mit der angegebenen ID gefunden wird.</exception>
-        public Student FindByID(int id)
+        public Student? FindByID(int id)
         {
-            return _hochschuleContext.Students.Find(id) ?? throw new NotFoundException($"Entity with ID '{id}' not found.");
+            return _hochschuleContext.Students.Find(id);
         }
 
         /// <summary>
@@ -88,34 +82,8 @@ namespace HochschuleApp.repository
         /// Löscht ein Student-Objekt aus der Datenbank.
         /// </summary>
         /// <param name="entity">Das zu löschende Student-Objekt.</param>
-        /// <exception cref="ArgumentNullException">Wird ausgelöst, wenn `entity` null ist.</exception>
-        /// <exception cref="NotFoundException">Wird ausgelöst, wenn kein Student mit der angegebenen ID gefunden wird.</exception>
-        /// <remarks>
-        /// **Hinweis:** Das Löschen eines Studenten kann Auswirkungen auf andere Entitäten haben, wie z.B. Einschreibungen in Kurse.
-        /// Bitte stellen Sie sicher, dass alle Abhängigkeiten vor dem Löschen gelöst wurden.
-        /// </remarks>
         public void Delete(Student entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException($"Entity is null.");
-            }
-
-            var foundedIEntity = _hochschuleContext.Students.Find(entity.Id)
-                ?? throw new NotFoundException($"Entity with ID '{entity.Id}' not found.");
-
-            _hochschuleContext.Students.Remove(foundedIEntity);
-            _hochschuleContext.SaveChanges();
-        }
-
-        /// <summary>
-        /// Löscht einen Studenten anhand seiner ID.
-        /// </summary>
-        /// <param name="id">Die ID des zu löschenden Studenten.</param>
-        /// <exception cref="NotFoundException">Wird ausgelöst, wenn kein Student mit der angegebenen ID gefunden wird.</exception>
-        public void DeleteByID(int id)
-        {
-            var entity = this.FindByID(id);
             _hochschuleContext.Students.Remove(entity);
             _hochschuleContext.SaveChanges();
         }

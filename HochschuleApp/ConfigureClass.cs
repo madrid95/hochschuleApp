@@ -1,10 +1,12 @@
 ﻿using Autofac;
 using HochschuleApp.context;
+using HochschuleApp.data.migration;
 using HochschuleApp.repository;
 using HochschuleApp.screens;
 using HochschuleApp.service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using MySqlConnector;
 
 namespace HochschuleApp
 {
@@ -17,16 +19,25 @@ namespace HochschuleApp
         /// Konfiguriert den Autofac-Container und registriert die benötigten Typen.
         /// </summary>
         /// <returns>Der konfigurierte Autofac-Container.</returns>
-        public static Autofac.IContainer Configure(IConfiguration configuration)
+        public static Autofac.IContainer Configure(IConfiguration configuration, bool inMemoryDb)
         {
             var builder = new ContainerBuilder();
 
             // Registrierung der HochschuleContext
             builder.Register(c =>
             {
+                var connectionString = configuration.GetConnectionString("DefaultConnection");
                 var optionsBuilder = new DbContextOptionsBuilder<HochschuleContext>();
-                optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection")); // Use the connection string from configuration
+                
+                if (inMemoryDb)
+                {
+                    optionsBuilder.UseInMemoryDatabase("hochschule_database");
+                    return new HochschuleContext(optionsBuilder.Options);
+                }
+
+                optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)); // Use the connection string from configuration
                 return new HochschuleContext(optionsBuilder.Options);
+
             }).InstancePerLifetimeScope();
 
             // Registrierung der Repositories
@@ -50,6 +61,9 @@ namespace HochschuleApp
 
             // Registrierung der Application
             builder.RegisterType<Application>();
+
+            // Registrierung des DataSeeders
+            builder.RegisterType<DataSeeder>().WithParameter("inMemoryDatabse", inMemoryDb);
 
             return builder.Build();
         }

@@ -5,7 +5,7 @@ namespace HochschuleApp.entity
     /// <summary>
     /// Stellt einen Dozenten/eine Dozentin der Hochschule dar.
     /// </summary>
-	public class Lecturer : ICloneable, IIdentifiable<int>
+	public class Lecturer : ICloneable, IIdentifiable<int>, IPrintable
     {
         [Key]
         public int Id { get; set; }
@@ -56,6 +56,21 @@ namespace HochschuleApp.entity
         public Lecturer CloneObject()
         {
             return (Lecturer)this.Clone();
+        }
+
+        /// <summary>
+        /// Liefert eine kurze, lesbare Zeichenketten-Darstellung des Dozenten.
+        /// </summary>
+        /// <returns>
+        /// Eine Zeichenkette im Format 
+        /// "Lecturer: Id=[Id], Surname=[Surname], Name=[Name]".
+        /// </returns>
+        public string ToShortString()
+        {
+            return $"{nameof(Lecturer)}: " +
+                   $"Id={Id}, " +
+                   $"Surname={Surname}, " +
+                   $"Name={Name}";
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using HochschuleApp.context;
 using HochschuleApp.entity;
-using HochschuleApp.exceptions;
 using HochschuleApp.Extensions;
 
 namespace HochschuleApp.repository
@@ -18,7 +17,7 @@ namespace HochschuleApp.repository
         // <summary>
         /// Referenz auf den DbContext, der für den Zugriff auf die Datenbank verwendet wird.
         /// </summary>
-        private HochschuleContext _hochschuleContext;
+        private readonly HochschuleContext _hochschuleContext;
 
         /// <summary>
         /// Konstruktor für die LecturerRepository-Klasse.
@@ -31,31 +30,8 @@ namespace HochschuleApp.repository
         /// Löscht ein Dozent-Objekt aus der Datenbank.
         /// </summary>
         /// <param name="entity">Das zu löschende Dozent-Objekt.</param>
-        /// <exception cref="ArgumentNullException">Wird ausgelöst, wenn entity null ist.</exception>
-        /// <exception cref="NotFoundException">Wird ausgelöst, wenn kein Dozent mit der angegebenen ID gefunden wird.</exception>
         public void Delete(Lecturer entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException($"Entity is null.");
-            }
-
-            var foundedIEntity = _hochschuleContext.Lecturers.Find(entity.Id)
-                ?? throw new NotFoundException($"Entity with ID '{entity.Id}' not found.");
-
-            _hochschuleContext.Lecturers.Remove(foundedIEntity);
-            _hochschuleContext.SaveChanges();
-        }
-
-        /// <summary>
-        /// Löscht ein Dozent-Objekt aus der Datenbank anhand seiner ID.
-        /// </summary>
-        /// <param name="id">Die ID des zu löschenden Dozenten.</param>
-        /// <exception cref="NotFoundException">Wird ausgelöst, wenn kein Dozent mit der angegebenen ID gefunden wird.</exception>
-        public void DeleteByID(int id)
-        {
-            var entity = this.FindByID(id);
-
             _hochschuleContext.Lecturers.Remove(entity);
             _hochschuleContext.SaveChanges();
         }
@@ -65,10 +41,9 @@ namespace HochschuleApp.repository
         /// </summary>
         /// <param name="id">Die ID des gesuchten Dozenten.</param>
         /// <returns>Das gefundene Dozent-Objekt oder null, wenn kein Dozent mit der angegebenen ID gefunden wird.</returns>
-        /// <exception cref="NotFoundException">Wird ausgelöst, wenn kein Dozent mit der angegebenen ID gefunden wird.</exception>
-        public Lecturer FindByID(int id)
+        public Lecturer? FindByID(int id)
         {
-            return _hochschuleContext.Lecturers.Find(id) ?? throw new NotFoundException($"Entity with ID '{id}' not found.");
+            return _hochschuleContext.Lecturers.Find(id);
         }
 
         /// <summary>
@@ -105,13 +80,11 @@ namespace HochschuleApp.repository
         /// <summary>
         /// Aktualisiert die Eigenschaften eines bestehenden Dozenten.
         /// </summary>
-        /// <param name="id">Die eindeutige Identifikationsnummer des zu aktualisierenden Dozenten.</param>
+        /// <param name="oldEntity">Das Dozent-Objekt mit den alten Eigenschaften.</param>
         /// <param name="newEntity">Das Dozent-Objekt mit den neuen Eigenschaften.</param>
-        /// <exception cref="NotFoundException">Wird geworfen, wenn kein Dozent mit der angegebenen ID gefunden wird.</exception>
-        public void Update(int id, Lecturer newEntity)
+        public void Update(Lecturer oldEntity, Lecturer newEntity)
         {
-            var foundEntity = this.FindByID(id);
-            foundEntity.UpdateProperties(newEntity);
+            oldEntity.UpdateProperties(newEntity);
             _hochschuleContext.SaveChanges();
         }
 
@@ -134,4 +107,3 @@ namespace HochschuleApp.repository
         }
     }
 }
-

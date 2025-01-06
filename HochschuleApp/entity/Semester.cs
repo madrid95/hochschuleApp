@@ -1,16 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using HochschuleApp.screens;
 
 namespace HochschuleApp.entity
 {
     /// <summary>
     /// Stellt ein Semester an der Hochschule dar.
     /// </summary>
-    public class Semester : ICloneable, IIdentifiable<int>
+    public class Semester : ICloneable, IIdentifiable<int>, IPrintable
     {
         [Key]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; } = string.Empty;
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         public virtual ICollection<Course> Courses { get; set; } = new HashSet<Course>();
         public virtual ICollection<Student> Students { get; set; } = new HashSet<Student>();
@@ -23,7 +26,9 @@ namespace HochschuleApp.entity
         {
             return $"{nameof(Semester)}: " +
                    $"Id={Id}, " +
-                   $"Name={Name}, ";
+                   $"Name={Name}, " +
+                   $"Startdate={StartDate?.ToString(InputScreen.DateFormat)}, " +
+                   $"Enddate={EndDate?.ToString(InputScreen.DateFormat)}";
         }
 
         /// <summary>
@@ -51,6 +56,20 @@ namespace HochschuleApp.entity
         public Semester CloneObject()
         {
             return (Semester)this.Clone();
+        }
+
+        /// <summary>
+        /// Liefert eine kurze, lesbare Zeichenketten-Darstellung des Semesters.
+        /// </summary>
+        /// <returns>
+        /// Eine Zeichenkette im Format 
+        /// "Semester: Id=[Id], Name=[Name]".
+        /// </returns>
+        public string ToShortString()
+        {
+            return $"{nameof(Semester)}: " +
+                   $"Id={Id}, " +
+                   $"Name={Name}";
         }
     }
 }

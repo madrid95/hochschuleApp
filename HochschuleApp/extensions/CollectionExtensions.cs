@@ -1,7 +1,4 @@
-﻿using System;
-using HochschuleApp.screens;
-
-namespace HochschuleApp.Extensions
+﻿namespace HochschuleApp.Extensions
 {
     /// <summary>
     /// Erweiterungsmethoden für ICollection.

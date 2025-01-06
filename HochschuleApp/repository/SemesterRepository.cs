@@ -1,7 +1,6 @@
 ﻿using System;
 using HochschuleApp.entity;
 using HochschuleApp.context;
-using HochschuleApp.exceptions;
 using HochschuleApp.Extensions;
 
 namespace HochschuleApp.repository
@@ -18,7 +17,7 @@ namespace HochschuleApp.repository
         /// <summary>
         /// Referenz auf den DbContext, der für den Zugriff auf die Datenbank verwendet wird.
         /// </summary>
-        private HochschuleContext _hochschuleContext;
+        private readonly HochschuleContext _hochschuleContext;
 
         /// <summary>
         /// Konstruktor für die SemesterRepository-Klasse.
@@ -31,12 +30,11 @@ namespace HochschuleApp.repository
         /// Aktualisiert die Eigenschaften eines bestehenden Semesters.
         /// </summary>
         /// <param name="id">Die eindeutige Identifikationsnummer des zu aktualisierenden Semesters.</param>
+        /// <param name="oldEntity">Das Semester-Objekt mit den alten Eigenschaften.</param>
         /// <param name="newEntity">Das Semester-Objekt mit den neuen Eigenschaften.</param>
-        /// <exception cref="NotFoundException">Wird geworfen, wenn kein Semester mit der angegebenen ID gefunden wird.</exception>
-        public void Update(int id, Semester newEntity)
+        public void Update(Semester oldEntity, Semester newEntity)
         {
-            var foundEntity = this.FindByID(id);
-            foundEntity.UpdateProperties(newEntity);
+            oldEntity.UpdateProperties(newEntity);
             _hochschuleContext.SaveChanges();
         }
 
@@ -67,10 +65,9 @@ namespace HochschuleApp.repository
         /// </summary>
         /// <param name="id">Die ID des gesuchten Semesters.</param>
         /// <returns>Das gefundene Semester-Objekt oder null, wenn kein Semester mit der angegebenen ID gefunden wird.</returns>
-        /// <exception cref="NotFoundException">Wird geworfen, wenn kein Semester mit der angegebenen ID gefunden wird.</exception>
-        public Semester FindByID(int id)
+        public Semester? FindByID(int id)
         {
-            return _hochschuleContext.Semesters.Find(id) ?? throw new NotFoundException($"Entity with ID '{id}' not found.");
+            return _hochschuleContext.Semesters.Find(id);
         }
 
         /// <summary>
@@ -86,35 +83,8 @@ namespace HochschuleApp.repository
         /// Löscht ein Semester-Objekt aus der Datenbank.
         /// </summary>
         /// <param name="entity">Das zu löschende Semester-Objekt.</param>
-        /// <exception cref="ArgumentNullException">Wird ausgelöst, wenn `entity` null ist.</exception>
-        /// <exception cref="NotFoundException">Wird ausgelöst, wenn kein Semester mit der angegebenen ID gefunden wird.</exception>
-        /// <remarks>
-        /// **Hinweis:** Das Löschen eines Semesters kann Auswirkungen auf andere Entitäten haben, wie z.B. Kurse oder Prüfungen.
-        /// Bitte stellen Sie sicher, dass alle Abhängigkeiten vor dem Löschen gelöst wurden.
-        /// </remarks>
         public void Delete(Semester entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException($"Entity is null.");
-            }
-
-            var foundedIEntity = _hochschuleContext.Semesters.Find(entity.Id)
-                ?? throw new NotFoundException($"Entity with ID '{entity.Id}' not found.");
-
-            _hochschuleContext.Semesters.Remove(foundedIEntity);
-            _hochschuleContext.SaveChanges();
-        }
-
-        /// <summary>
-        /// Löscht ein Semester-Objekt aus der Datenbank anhand seiner ID.
-        /// </summary>
-        /// <param name="id">Die ID des zu löschenden Semesters.</param>
-        /// <exception cref="NotFoundException">Wird ausgelöst, wenn kein Semester mit der angegebenen ID gefunden wird.</exception>
-        public void DeleteByID(int id)
-        {
-            var entity = this.FindByID(id);
-
             _hochschuleContext.Semesters.Remove(entity);
             _hochschuleContext.SaveChanges();
         }
@@ -141,4 +111,3 @@ namespace HochschuleApp.repository
         }
     }
 }
-

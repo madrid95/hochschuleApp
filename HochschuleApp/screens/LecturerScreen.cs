@@ -1,5 +1,6 @@
 ﻿using HochschuleApp.entity;
 using HochschuleApp.service;
+using HochschuleApp.exceptions;
 
 namespace HochschuleApp.screens
 {
@@ -29,7 +30,6 @@ namespace HochschuleApp.screens
         {
             do
             {
-                Console.Clear();
                 Console.WriteLine("\n--- Lecturer Management Menu ---");
                 Console.WriteLine("1. Create Lecturer");
                 Console.WriteLine("2. Update Lecturer");
@@ -38,12 +38,13 @@ namespace HochschuleApp.screens
                 Console.WriteLine("5. Display Lecturer by ID");
                 Console.WriteLine("6. Add Lecturer to Course");
                 Console.WriteLine("8. Back to Main Menu");
+                Console.WriteLine("9. Clear Console");
                 Console.WriteLine("----------------------------");
                 Console.Write("Enter your choice: ");
 
-                while (!int.TryParse(Console.ReadLine(), out choice) || choice < IHochschuleScreen.INITIAL_MENU_POINT || choice > IHochschuleScreen.QUITT_MAIN_MENU)
+                while (!int.TryParse(Console.ReadLine(), out choice) || choice < IHochschuleScreen.INITIAL_MENU_POINT || choice > IHochschuleScreen.CLEAR_SCREEN)
                 {
-                    Console.WriteLine($"Invalid choice. Please enter a number between {IHochschuleScreen.INITIAL_MENU_POINT} and {IHochschuleScreen.QUITT_MAIN_MENU}.");
+                    Console.WriteLine($"Invalid choice. Please enter a number between {IHochschuleScreen.INITIAL_MENU_POINT} and {IHochschuleScreen.CLEAR_SCREEN}.");
                     Console.Write("Enter your choice: ");
                 }
 
@@ -71,6 +72,9 @@ namespace HochschuleApp.screens
                         choice = IHochschuleScreen.QUITT_MAIN_MENU;
                         Console.Clear();
                         break;
+                    case 9:
+                        Console.Clear();
+                        break;
                     // Default case
                     default:
                         Console.WriteLine("Unfortunately, your input cannot be read!");
@@ -88,12 +92,24 @@ namespace HochschuleApp.screens
 
             int lecturerId = InputScreen.GetIntInput($"Enter the ID of the Lecturer to add Course");
 
-            Lecturer lecturer = _lecturerService.FindByID(lecturerId);
+            Lecturer? lecturer = ExceptionHandler.Invoke(() => _lecturerService.FindByID(lecturerId));
+
+            if (lecturer == null)
+            {
+                return;
+            }
 
             // Allow user to select Lecturer for the Course
             int courseId = InputScreen.GetIntInput($"Enter the ID of the Course to add Lecturer");
 
-            _lecturerService.AddLecturerToCourse(lecturer.Id, courseId);
+            Course? course = ExceptionHandler.Invoke(() => _courseService.FindByID(courseId));
+
+            if (course == null)
+            {
+                return;
+            }
+
+            ExceptionHandler.Invoke(() => _lecturerService.AddLecturerToCourse(lecturer.Id, courseId));
         }
 
         /// <summary>
@@ -125,7 +141,7 @@ namespace HochschuleApp.screens
                 Courses = courses
             };
 
-            _lecturerService.CreateNew(newLecturer);
+            ExceptionHandler.Invoke(() => _lecturerService.CreateNew(newLecturer));
         }
 
         /// <summary>
@@ -133,45 +149,47 @@ namespace HochschuleApp.screens
         /// </summary>
         public void Update()
         {
-
             Console.WriteLine("--- Update Lecturer ---");
 
             int lecturerId = InputScreen.GetIntInput($"Enter the ID of the Lecturer to update");
 
-            Lecturer lecturer = _lecturerService.FindByID(lecturerId);
+            Lecturer? lecturer = ExceptionHandler.Invoke(() => _lecturerService.FindByID(lecturerId));
 
-            string surname = InputScreen.GetStringInputWithDefaultValue(
+            if (lecturer != null)
+            {
+                string surname = InputScreen.GetStringInputWithDefaultValue(
                 InputScreen.GetStringInput($"Enter Lecturer Surname (or press Enter to keep current) ({lecturer.Surname})"),
                 lecturer.Surname);
 
-            string name = InputScreen.GetStringInputWithDefaultValue(
-                InputScreen.GetStringInput($"Enter Lecturer Name (or press Enter to keep current) ({lecturer.Name})"),
-                lecturer.Name);
+                string name = InputScreen.GetStringInputWithDefaultValue(
+                    InputScreen.GetStringInput($"Enter Lecturer Name (or press Enter to keep current) ({lecturer.Name})"),
+                    lecturer.Name);
 
-            string address = InputScreen.GetStringInputWithDefaultValue(
-                InputScreen.GetStringInput($"Enter Lecturer Address (or press Enter to keep current) ({lecturer.Address})"),
-                lecturer.Address);
+                string address = InputScreen.GetStringInputWithDefaultValue(
+                    InputScreen.GetStringInput($"Enter Lecturer Address (or press Enter to keep current) ({lecturer.Address})"),
+                    lecturer.Address);
 
-            DateTime? birthdate = InputScreen.GetDateTimeInputWithDefaultValue(
-                "$Enter Birthdate ({InputScreen.DateFormat}) (or press Enter to keep current)",
-                lecturer.Birthdate);
+                DateTime? birthdate = InputScreen.GetDateTimeInputWithDefaultValue(
+                    $"Enter Birthdate ({InputScreen.DateFormat}) (or press Enter to keep current)",
+                    lecturer.Birthdate);
 
-            Degree degree = DegreeScreen.GetDegreeFromUserWithDefaultValue(lecturer.Degree);
+                Degree degree = DegreeScreen.GetDegreeFromUserWithDefaultValue(lecturer.Degree);
 
-            // Allow user to select Courses for the Lecturer
-            var courses = InputScreen.GetStringInputs(AvailableCourses(),
-                "Select Courses for this Lecturer (enter Course IDs separated by commas, or press Enter to skip)");
+                // Allow user to select Courses for the Lecturer
+                var courses = InputScreen.GetStringInputs(AvailableCourses(),
+                    "Select Courses for this Lecturer (enter Course IDs separated by commas, or press Enter to skip)");
 
-            Lecturer newLecturer = lecturer.CloneObject();
+                Lecturer newLecturer = lecturer.CloneObject();
 
-            newLecturer.Surname = surname;
-            newLecturer.Name = name;
-            newLecturer.Address = address;
-            newLecturer.Birthdate = birthdate;
-            newLecturer.Degree = degree;
-            newLecturer.Courses = courses;
+                newLecturer.Surname = surname;
+                newLecturer.Name = name;
+                newLecturer.Address = address;
+                newLecturer.Birthdate = birthdate;
+                newLecturer.Degree = degree;
+                newLecturer.Courses = courses;
 
-            _lecturerService.Update(newLecturer.Id, newLecturer);
+                ExceptionHandler.Invoke(() => _lecturerService.Update(newLecturer.Id, newLecturer));
+            }
         }
 
         /// <summary>
@@ -183,7 +201,7 @@ namespace HochschuleApp.screens
 
             int lecturerId = InputScreen.GetIntInput($"Enter the ID of the Lecturer to delete");
 
-            _lecturerService.DeleteByID(lecturerId);
+            ExceptionHandler.Invoke(() => _lecturerService.DeleteByID(lecturerId));
         }
 
         /// <summary>
@@ -195,7 +213,12 @@ namespace HochschuleApp.screens
 
             int lecturerId = InputScreen.GetIntInput($"Enter the ID of the Lecturer to display");
 
-            Lecturer lecturer = _lecturerService.FindByID(lecturerId);
+            var lecturer = ExceptionHandler.Invoke(() => _lecturerService.FindByID(lecturerId));
+
+            if (lecturer == null)
+            {
+                return;
+            }
 
             Display(lecturer);
         }
@@ -207,7 +230,13 @@ namespace HochschuleApp.screens
         {
             Console.WriteLine("--- Display All Lecturers ---");
 
-            var lecturers = _lecturerService.ListAll();
+            List<Lecturer> lecturers = ExceptionHandler.Invoke( _lecturerService.ListAll);
+
+            if (lecturers.Count == 0)
+            {
+                Console.WriteLine("There is no Lecture.");
+                return;
+            }
 
             foreach (var lecturer in lecturers)
             {
@@ -221,13 +250,22 @@ namespace HochschuleApp.screens
         /// <param name="lecturer">Der Dozent, dessen Informationen angezeigt werden sollen.</param>
         private static void Display(Lecturer lecturer)
         {
+            Console.WriteLine("-----------------------------------------------");
             Console.WriteLine(lecturer.ToString());
 
             Console.WriteLine("\nCourses associated with Lecturer:");
+
+            if (lecturer.Courses.Count == 0)
+            {
+                Console.WriteLine("There is no Course offered by this Student.");
+            }
+
             foreach (var course in lecturer.Courses)
             {
-                Console.WriteLine($" - {course.Id} {course.Name}");
+                Console.WriteLine(course.ToShortString());
             }
+
+            Console.WriteLine("-----------------------------------------------");
         }
 
         /// <summary>
@@ -236,8 +274,7 @@ namespace HochschuleApp.screens
         /// <returns>Eine Liste aller Kurse.</returns>
         private List<Course> AvailableCourses()
         {
-            return _courseService.ListAll();
+            return ExceptionHandler.Invoke(_courseService.ListAll);
         }
     }
 }
-

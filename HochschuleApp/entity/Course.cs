@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using HochschuleApp.screens;
 
 namespace HochschuleApp.entity
 {
     /// <summary>
     /// Stellt ein Kurs-Objekt innerhalb der HochschuleApp dar.
     /// </summary>
-    public class Course : ICloneable, IIdentifiable<int>
+    public class Course : ICloneable, IIdentifiable<int>, IPrintable
     {
         [Key]
         public int Id { get; set; }
@@ -38,9 +39,23 @@ namespace HochschuleApp.entity
                    $"Id={Id}, " +
                    $"Name={Name}, " +
                    $"Description={Description}, " +
-                   $"Lecturer={(Lecturer != null ? Lecturer.ToString() : "N/A")}, " +
-                   $"Startdate={Startdate?.ToString("yyyy-MM-dd")}, " +
-                   $"Enddate={Enddate?.ToString("yyyy-MM-dd")}";
+                   $"Lecturer={(Lecturer != null ? Lecturer.ToShortString() : "N/A")}, " +
+                   $"Startdate={Startdate?.ToString(InputScreen.DateFormat)}, " +
+                   $"Enddate={Enddate?.ToString(InputScreen.DateFormat)}";
+        }
+
+        /// <summary>
+        /// Liefert eine kurze, lesbare Zeichenketten-Darstellung des Kurses.
+        /// </summary>
+        /// <returns>
+        /// Eine Zeichenkette im Format 
+        /// "Course: Id=[Id], Name=[Name]".
+        /// </returns>
+        public string ToShortString()
+        {
+            return $"{nameof(Course)}: " +
+                   $"Id={Id}, " +
+                   $"Name={Name}";
         }
 
         /// <summary>

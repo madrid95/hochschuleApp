@@ -1,7 +1,4 @@
-﻿using System;
-using System.Security.Cryptography;
-
-namespace HochschuleApp.entity
+﻿namespace HochschuleApp.entity
 {
     /// <summary>
     /// Stellt ein Interface dar, das eine eindeutige Kennung für Entitäten definiert.

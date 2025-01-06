@@ -5,7 +5,7 @@ namespace HochschuleApp.entity
     /// <summary>
     /// Stellt einen Studierenden der Hochschule dar.
     /// </summary>
-    public class Student : ICloneable, IIdentifiable<int>
+    public class Student : ICloneable, IIdentifiable<int>, IPrintable
     {
         [Key]
         public int Id { get; set; }
@@ -32,7 +32,7 @@ namespace HochschuleApp.entity
                    $"Name={Name}, " +
                    $"Address={Address}, " +
                    $"Birthdate={Birthdate?.ToString("yyyy-MM-dd")}, " +
-                   $"Semester={Semester}";
+                   $"Semester={(Semester != null ? Semester.ToShortString() : "N/A")}";
         }
 
         /// <summary>
@@ -57,6 +57,21 @@ namespace HochschuleApp.entity
         public Student CloneObject()
         {
             return (Student)this.Clone();
+        }
+
+        /// <summary>
+        /// Liefert eine kurze, lesbare Zeichenketten-Darstellung des Studenten.
+        /// </summary>
+        /// <returns>
+        /// Eine Zeichenkette im Format 
+        /// "Student: Id=[Id], Surname=[Surname], Name=[Name]".
+        /// </returns>
+        public string ToShortString()
+        {
+            return $"{nameof(Student)}: " +
+                   $"Id={Id}, " +
+                   $"Surname={Surname}, " +
+                   $"Name={Name}";
         }
     }
 }

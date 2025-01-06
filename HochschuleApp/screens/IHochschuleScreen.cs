@@ -21,6 +21,11 @@ namespace HochschuleApp.screens
         public const int INITIAL_MENU_POINT = 1;
 
         /// <summary>
+        /// Konstante für die Menüoption "Lösche Konsole".
+        /// </summary>
+        public const int CLEAR_SCREEN = 9;
+
+        /// <summary>
         /// Erstellt einen neuen Datensatz.
         /// </summary>
         void Create();

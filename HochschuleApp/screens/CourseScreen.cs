@@ -1,5 +1,6 @@
 ﻿using HochschuleApp.entity;
 using HochschuleApp.service;
+using HochschuleApp.exceptions;
 
 namespace HochschuleApp.screens
 {
@@ -23,7 +24,6 @@ namespace HochschuleApp.screens
         {
             do
             {
-                Console.Clear();
                 Console.WriteLine("\n--- Course Management Menu ---");
                 Console.WriteLine("1. Create Course");
                 Console.WriteLine("2. Update Course");
@@ -33,12 +33,13 @@ namespace HochschuleApp.screens
                 Console.WriteLine("6. Add Student to Courses");
                 Console.WriteLine("7. Add Lecturer to Courses");
                 Console.WriteLine("8. Back to Main Menu");
+                Console.WriteLine("9. Clear Console");
                 Console.WriteLine("----------------------------");
                 Console.Write("Enter your choice: ");
 
-                while (!int.TryParse(Console.ReadLine(), out choice) || choice < IHochschuleScreen.INITIAL_MENU_POINT || choice > IHochschuleScreen.QUITT_MAIN_MENU)
+                while (!int.TryParse(Console.ReadLine(), out choice) || choice < IHochschuleScreen.INITIAL_MENU_POINT || choice > IHochschuleScreen.CLEAR_SCREEN)
                 {
-                    Console.WriteLine($"Invalid choice. Please enter a number between {IHochschuleScreen.INITIAL_MENU_POINT} and {IHochschuleScreen.QUITT_MAIN_MENU}.");
+                    Console.WriteLine($"Invalid choice. Please enter a number between {IHochschuleScreen.INITIAL_MENU_POINT} and {IHochschuleScreen.CLEAR_SCREEN}.");
                     Console.Write("Enter your choice: ");
                 }
 
@@ -69,6 +70,9 @@ namespace HochschuleApp.screens
                         choice = IHochschuleScreen.QUITT_MAIN_MENU;
                         Console.Clear();
                         break;
+                    case 9:
+                        Console.Clear();
+                        break;
                     // Default case
                     default:
                         Console.WriteLine("Unfortunately, your input cannot be read!");
@@ -89,7 +93,7 @@ namespace HochschuleApp.screens
 
             int courseId = InputScreen.GetIntInput($"Enter the ID of the Course to delete");
 
-            _courseService.DeleteByID(courseId);
+            ExceptionHandler.Invoke(() => _courseService.DeleteByID(courseId));
         }
 
         /// <summary>
@@ -101,7 +105,12 @@ namespace HochschuleApp.screens
 
             int courseId = InputScreen.GetIntInput($"Enter the ID of the Course to update");
 
-            Course course = _courseService.FindByID(courseId);
+            Course? course = ExceptionHandler.Invoke(() => _courseService.FindByID(courseId));
+
+            if (course == null)
+            {
+                return;
+            }
 
             //Allow user to update name or keep the current value
             string name = InputScreen.GetStringInputWithDefaultValue(
@@ -111,6 +120,10 @@ namespace HochschuleApp.screens
             string description = InputScreen.GetStringInputWithDefaultValue(
                 InputScreen.GetStringInput($"Enter Semester Name (or press Enter to keep current) ({course.Name}):"),
                 course.Name);
+
+            DateTime? startDate = InputScreen.GetDateTimeInputWithDefaultValue($"Enter Start Date ({InputScreen.DateFormat}) (or press Enter to skip)", course.Startdate);
+
+            DateTime? endDate = InputScreen.GetDateTimeInputWithDefaultValue($"Enter End Date ({InputScreen.DateFormat}) (or press Enter to skip)", course.Enddate);
 
             // Allow user to select Students for the Course
             var students = InputScreen.GetStringInputs(AvailableStudents(),
@@ -124,10 +137,12 @@ namespace HochschuleApp.screens
 
             newCourse.Name = name;
             newCourse.Description = description;
+            newCourse.Startdate = startDate;
+            newCourse.Enddate = endDate;
             newCourse.Students = students;
             newCourse.Semesters = semesters;
 
-            _courseService.Update(newCourse.Id, newCourse);
+            ExceptionHandler.Invoke(() => _courseService.Update(newCourse.Id, newCourse));
         }
 
         /// <summary>
@@ -137,9 +152,15 @@ namespace HochschuleApp.screens
         {
             Console.WriteLine("--- Display All Courses ---");
 
-            var courses = _courseService.ListAll();
+            List<Course> courses = ExceptionHandler.Invoke(_courseService.ListAll);
 
-            foreach(var course in courses)
+            if (courses.Count == 0)
+            {
+                Console.WriteLine("There is no Course.");
+                return;
+            }
+
+            foreach (var course in courses)
             {
                 Display(course);
             }
@@ -154,7 +175,12 @@ namespace HochschuleApp.screens
 
             int courseId = InputScreen.GetIntInput($"Enter the ID of the Course to display");
 
-            Course course = _courseService.FindByID(courseId);
+            Course? course = ExceptionHandler.Invoke(() => _courseService.FindByID(courseId));
+
+            if(course == null)
+            {
+                return;
+            }
 
             Display(course);
         }
@@ -168,12 +194,17 @@ namespace HochschuleApp.screens
 
             int courseId = InputScreen.GetIntInput($"Enter the ID of the Course to add Student");
 
-            Course course = _courseService.FindByID(courseId);
+            Course? course = ExceptionHandler.Invoke(() => _courseService.FindByID(courseId));
+
+            if (course == null)
+            {
+                return;
+            }
 
             // Allow user to select Student for the Course
             int studentId = InputScreen.GetIntInput($"Enter the ID of the Student to add");
 
-            _courseService.AddStudentToCourse(course.Id, studentId);
+            ExceptionHandler.Invoke(() => _courseService.AddStudentToCourse(course.Id, studentId));
         }
 
         /// <summary>
@@ -185,12 +216,17 @@ namespace HochschuleApp.screens
 
             int courseId = InputScreen.GetIntInput($"Enter the ID of the Course to add Lecturer");
 
-            Course course = _courseService.FindByID(courseId);
+            Course? course = ExceptionHandler.Invoke(() => _courseService.FindByID(courseId));
+
+            if (course == null)
+            {
+                return;
+            }
 
             // Allow user to select Lecturer for the Course
             int lecturerId = InputScreen.GetIntInput($"Enter the ID of the Lecturer to add");
 
-            _courseService.AddLecturerToCourse(course.Id, lecturerId);
+            ExceptionHandler.Invoke(() => _courseService.AddLecturerToCourse(course.Id, lecturerId));
         }
 
         /// <summary>
@@ -203,8 +239,13 @@ namespace HochschuleApp.screens
             string name = InputScreen.GetStringInput("Enter Course Name");
             string description = InputScreen.GetStringInput("Enter Course Description");
 
-            int lecturerId = InputScreen.GetIntInput("Enter Lecturer ID (or press Enter to skip)");
-            Lecturer lecturer = _lecturerService.FindByID(lecturerId);
+            int? lecturerId = InputScreen.GetIntInputOrNull("Enter Lecturer ID (or press Enter to skip)");
+            Lecturer? lecturer = null;
+
+            if (lecturerId != null)
+            {
+                lecturer = ExceptionHandler.Invoke(() => _lecturerService.FindByID((int)lecturerId));
+            }
 
             DateTime? startDate = InputScreen.GetDateTimeInput($"Enter Start Date ({InputScreen.DateFormat}) (or press Enter to skip)");
 
@@ -229,7 +270,7 @@ namespace HochschuleApp.screens
                 Semesters = semesters
             };
 
-            _courseService.CreateNew(newCourse);
+            ExceptionHandler.Invoke(() => _courseService.CreateNew(newCourse));
         }
 
         /// <summary>
@@ -238,19 +279,33 @@ namespace HochschuleApp.screens
         /// <param name="course">The Course object whose details will be displayed.</param>
         private static void Display(Course course)
         {
+            Console.WriteLine("-----------------------------------------------");
             Console.WriteLine(course.ToString());
 
             Console.WriteLine("\nStudents enrolled in this Course:");
+
+            if (course.Students.Count == 0)
+            {
+                Console.WriteLine("There is no Student enrolled in this Course");
+            }
+
             foreach (var student in course.Students)
             {
-                Console.WriteLine($" - {student.Id} {student.Name} {student.Surname}");
+                Console.WriteLine(student.ToShortString());
             }
 
             Console.WriteLine("\nSemesters associated with this Course:");
+
+            if (course.Semesters.Count == 0)
+            {
+                Console.WriteLine("There is no Semester added in this Course");
+            }
+
             foreach (var semester in course.Semesters)
             {
-                Console.WriteLine($" - {semester.Id} {semester.Name}");
+                Console.WriteLine(semester.ToShortString());
             }
+            Console.WriteLine("-----------------------------------------------");
         }
 
         /// <summary>
@@ -259,7 +314,7 @@ namespace HochschuleApp.screens
         /// <returns>Eine Liste aller Studenten.</returns>
         private List<Student> AvailableStudents()
         {
-            return _studentService.ListAll();
+            return ExceptionHandler.Invoke(_studentService.ListAll);
         }
 
         /// <summary>
@@ -268,7 +323,7 @@ namespace HochschuleApp.screens
         /// <returns>Eine Liste aller Semester.</returns>
         private List<Semester> AvailableSemesters()
         {
-            return _semesterService.ListAll();
+            return ExceptionHandler.Invoke(_semesterService.ListAll);
         }
     }
 }

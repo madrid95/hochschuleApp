@@ -1,5 +1,6 @@
 ﻿using System;
 using HochschuleApp.screens;
+using HochschuleApp.data.migration;
 
 namespace HochschuleApp
 {
@@ -22,15 +23,17 @@ namespace HochschuleApp
         public event DelEventHandler add;
 
         private readonly HochschuleAppMainScreen _hochschuleAppMainScreen;
+        private readonly DataSeeder _dataSeeder;
 
         /// <summary>
         /// Konstruktor für die Application-Klasse.
         /// </summary>
         /// <param name="hochschuleAppMainScreen">Das Hauptfenster der Anwendung.</param>
-        public Application(HochschuleAppMainScreen hochschuleAppMainScreen)
+        public Application(HochschuleAppMainScreen hochschuleAppMainScreen, DataSeeder dataSeeder)
         {
+            _dataSeeder = dataSeeder;
             _hochschuleAppMainScreen = hochschuleAppMainScreen;
-            add += new DelEventHandler(Run);  // Beachte: Anonyme Methode wird direkt hinzugefügt
+            add += new DelEventHandler(Run);
             add.Invoke();
         }
 
@@ -40,8 +43,12 @@ namespace HochschuleApp
         /// <remarks>
         /// Diese Methode wird beim Start der Anwendung aufgerufen und delegiert die eigentliche Ausführung an das Hauptfenster (`_hochschuleAppMainScreen.Run()`).
         /// </remarks>
-        public void Run()
+        public async void Run()
         {
+
+            // Seed the database on application startup
+            Task.Run(_dataSeeder.SeedAsync);
+
             _hochschuleAppMainScreen.Run();
         }
     }

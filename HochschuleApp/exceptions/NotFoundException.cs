@@ -9,10 +9,10 @@ namespace HochschuleApp.exceptions
         /// <summary>
         /// Initialisiert eine neue Instanz der NotFoundException-Klasse mit der angegebenen Fehlermeldung.
         /// </summary>
-        /// <param name="message">Die Fehlermeldung.</param>
-        public NotFoundException(string message) : base(message)
+        /// <param name="name">entity name.</param>
+        /// <param name="id">entity id.</param>
+        public NotFoundException(string name, int id) : base($"Entity {name} with ID '{id}' not found.")
         {
         }
     }
 }
-

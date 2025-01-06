@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using HochschuleApp.screens;
 using Microsoft.Extensions.Configuration;
 
 namespace HochschuleApp
@@ -22,7 +23,9 @@ namespace HochschuleApp
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
 
-            var config = ConfigureClass.Configure(configuration);
+            bool choice = StartScreen.Start();
+
+            var config = ConfigureClass.Configure(configuration, choice);
             using var scope = config.BeginLifetimeScope();
             scope.Resolve<Application>();
         }
