@@ -1,27 +1,32 @@
 ﻿<Properties StartupConfiguration="{50A1E479-66AA-4FCF-AA23-477D4BF3686D}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.HochschuleApp PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="appsettings.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="exceptions/ExceptionHandler.cs">
     <Files>
-      <File FileName="data/migration/DataSeeder.cs" Line="19" Column="6" />
-      <File FileName="appsettings.json" Line="13" Column="2" />
+      <File FileName="data/migration/DataSeeder.cs" />
+      <File FileName="appsettings.json" />
+      <File FileName="exceptions/ExceptionHandler.cs" Line="17" Column="12" />
+      <File FileName="repository/CourseRepository.cs" Line="1" Column="1" />
+      <File FileName="repository/LecturerRepository.cs" Line="1" Column="1" />
+      <File FileName="repository/SemesterRepository.cs" Line="1" Column="1" />
+      <File FileName="repository/StudentRepository.cs" Line="1" Column="1" />
+      <File FileName="screens/CourseScreen.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="HochschuleApp" expanded="True">
+          <Node name="HochschuleApp">
             <Node name="HochschuleApp">
               <Node name="data" expanded="True">
                 <Node name="migration" expanded="True" />
-                <Node name="mysql" expanded="True" />
               </Node>
-              <Node name="entity" expanded="True" />
-              <Node name="repository" expanded="True" />
-              <Node name="appsettings.json" selected="True" />
+              <Node name="exceptions" expanded="True">
+                <Node name="ExceptionHandler.cs" selected="True" />
+              </Node>
+              <Node name="screens" expanded="True" />
+              <Node name="service" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -29,4 +34,6 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

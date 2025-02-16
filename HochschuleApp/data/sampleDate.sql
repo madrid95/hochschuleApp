@@ -2,11 +2,9 @@
 VALUES ('Prof. Dr.', 'Schmidt', 'Professor'),
        ('Dr.', 'Müller', 'Professor');
 
-
 INSERT INTO Semesters (Name, StartDate, EndDate)
 VALUES ('Wintersemester 2024/2025', '2024-10-01', '2025-03-31'),
        ('Sommersemester 2025', '2025-04-01', '2025-09-30');
-
 
 -- Get the IDs of the previously inserted lecturers (assuming auto-increment)
 SELECT id FROM Lecturers WHERE Name = 'Prof. Dr.' AND Surname = 'Schmidt';

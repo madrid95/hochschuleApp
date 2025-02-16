@@ -1,6 +1,4 @@
-﻿
-
-using HochschuleApp.entity;
+﻿using HochschuleApp.entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace HochschuleApp.context

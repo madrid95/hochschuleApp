@@ -18,6 +18,7 @@
     <None Remove="data\" />
     <None Remove="data\mysql\" />
     <None Remove="data\migration\" />
+    <None Remove="logger\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="entity\" />
@@ -30,6 +31,7 @@
     <Folder Include="data\" />
     <Folder Include="data\mysql\" />
     <Folder Include="data\migration\" />
+    <Folder Include="logger\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.5.1" />

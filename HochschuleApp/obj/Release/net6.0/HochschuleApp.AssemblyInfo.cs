@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HochschuleApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e7f3a5f60acfd1453cc9034e4ae1bf51c193edc")]
 [assembly: System.Reflection.AssemblyProductAttribute("HochschuleApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HochschuleApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

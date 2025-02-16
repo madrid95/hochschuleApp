@@ -1,4 +1,6 @@
 ﻿using System;
+using HochschuleApp.logger;
+
 namespace HochschuleApp.exceptions
 {
     public static class ExceptionHandler
@@ -11,7 +13,7 @@ namespace HochschuleApp.exceptions
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ConsoleLogger.LogError(ex);
             }
         }
 
@@ -23,7 +25,7 @@ namespace HochschuleApp.exceptions
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                ConsoleLogger.LogError(ex);
                 if (typeof(T).IsGenericType && typeof(T).GetGenericTypeDefinition() == typeof(List<>))
                 {
                     return Activator.CreateInstance<T>() as T;

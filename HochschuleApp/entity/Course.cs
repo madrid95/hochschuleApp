@@ -39,7 +39,7 @@ namespace HochschuleApp.entity
                    $"Id={Id}, " +
                    $"Name={Name}, " +
                    $"Description={Description}, " +
-                   $"Lecturer={(Lecturer != null ? Lecturer.ToShortString() : "N/A")}, " +
+                   $"{(Lecturer != null ? Lecturer.ToShortString() : "N/A")}, " +
                    $"Startdate={Startdate?.ToString(InputScreen.DateFormat)}, " +
                    $"Enddate={Enddate?.ToString(InputScreen.DateFormat)}";
         }

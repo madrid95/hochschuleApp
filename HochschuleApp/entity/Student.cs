@@ -20,19 +20,19 @@ namespace HochschuleApp.entity
 
         public virtual ICollection<Course> Courses { get; set; } = new HashSet<Course>();
 
-        /// <summary>
+        /// <summary> 
         /// Gibt eine Zeichenketten-Darstellung des Student-Objekts zurück.
         /// </summary>
         /// <returns>Eine Zeichenketten-Darstellung des Student-Objekts.</returns>
         public override string ToString()
         {
-            return $"{nameof(Student)}: " +
+            return $"{nameof(Student)}: " +      
                    $"Id={Id}, " +
                    $"Surname={Surname}, " +
                    $"Name={Name}, " +
                    $"Address={Address}, " +
                    $"Birthdate={Birthdate?.ToString("yyyy-MM-dd")}, " +
-                   $"Semester={(Semester != null ? Semester.ToShortString() : "N/A")}";
+                   $"{(Semester != null ? Semester.ToShortString() : "N/A")}";
         }
 
         /// <summary>

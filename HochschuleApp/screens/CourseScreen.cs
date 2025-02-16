@@ -114,11 +114,11 @@ namespace HochschuleApp.screens
 
             //Allow user to update name or keep the current value
             string name = InputScreen.GetStringInputWithDefaultValue(
-                InputScreen.GetStringInput($"Enter Semester Name (or press Enter to keep current) ({course.Name}):"),
+                InputScreen.GetStringInput($"Enter Semester Name (or press Enter to keep current) ({course.Name})"),
                 course.Name);
 
             string description = InputScreen.GetStringInputWithDefaultValue(
-                InputScreen.GetStringInput($"Enter Semester Name (or press Enter to keep current) ({course.Name}):"),
+                InputScreen.GetStringInput($"Enter Semester Name (or press Enter to keep current) ({course.Name})"),
                 course.Name);
 
             DateTime? startDate = InputScreen.GetDateTimeInputWithDefaultValue($"Enter Start Date ({InputScreen.DateFormat}) (or press Enter to skip)", course.Startdate);
